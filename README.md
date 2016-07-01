@@ -45,3 +45,13 @@ This boilerplate is purposefully simple to show the minimal configuration for Re
 * [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
 * [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
 * Ping dan_abramov on Twitter or #reactjs IRC
+
+other:
+-# dunked
+ -none of your beeswax
+ -
+ -samsch: https://github.com/samsch
+ -StoneCypher: https://github.com/StoneCypher
+ -AndrewRay: https://twitter.com/andrewray
+ -harryh
+ -Chengiz
