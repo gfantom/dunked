@@ -72,7 +72,6 @@ const Demo = React.createClass({
   },
 
   render() {
-    const yolo = (this.props.location.pathname == '/') ? "yolo" : "NOLO";
     const {
       mouse, isPressed, firstConfig: [s0, d0], slider: {dragged, num}
     } = this.state;
@@ -82,9 +81,15 @@ const Demo = React.createClass({
       width: gridWidth,
       height: gridHeight,
     };
+    var dunkBox = "";
     if( this.props.location.pathname != '/' ) {
-      cellStyle.left = "0px";
-      cellStyle.top = gridHeight*this.props.count + 40;
+      cellStyle.left = "-0px";
+      cellStyle.top = gridHeight*this.props.count + 80;
+
+      const dunkBoxStyle = {
+        top: 420,
+      };
+      dunkBox = '<div style={dunkBoxStyle} className="demo5-cell"></div>';
     }
     const stiffness = s0;
     const damping = d0;
