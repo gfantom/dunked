@@ -2,6 +2,8 @@ import React from 'react';
 import {Motion, spring} from 'react-motion';
 import range from 'lodash.range';
 import { browserHistory } from 'react-router';
+import globalStore from "./stores/globalStore.jsx";
+import * as globalActions from "./actions/globalActions.jsx";
 
 const gridWidth = 210;
 const gridHeight = 210;
@@ -34,6 +36,7 @@ const Demo = React.createClass({
       mouse: [pressX, pressY],
       isPressed: true,
     });
+    globalActions.updateDragging(true);
   },
 
   handleTouchMove(e) {
@@ -56,6 +59,7 @@ const Demo = React.createClass({
       delta: [0, 0],
       slider: {dragged: null, num: 0},
     });
+    globalActions.updateDragging(false);
   },
 
   handleChange(constant, num, {target}) {

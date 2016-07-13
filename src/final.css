@@ -12,6 +12,31 @@ body {
   font-weight: 300;
 }
 
+h1 {
+left: 200px;
+  border-radius: 15px;
+  width: 690px;
+  border-width: 2px;
+  border-color: red;
+  border-style: solid;
+  background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 10px,
+    #465298 10px,
+    #465298 20px
+  );
+}
+h1:hover {
+  background: repeating-linear-gradient(
+    45deg,
+    #ff3333,
+    #ff3333 10px,
+    #ff8080 10px,
+    #ff8080 20px
+  );
+}
+
 h3 {
   margin: 16px 0 16px;
   font-size: 18px;
