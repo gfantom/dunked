@@ -3,6 +3,7 @@ import Layout from './Layout';
 import Demo from './DemoOG.jsx';
 import { Route, IndexRoute, browserHistory } from 'react-router';
 import globalStore from "./stores/globalStore.jsx";
+import HeaderOne from "./headerOne.jsx";
 
 // If you use React Router, make this component
 // render <Router> with your routes. Currently,
@@ -45,7 +46,7 @@ export default class App extends Component {
     var finalHeader = dragging ? "Drag here" : headline;
     return (
       <div className="demo5">
-      	<h1>{finalHeader}</h1>
+      	<HeaderOne>{finalHeader}</HeaderOne>
       	<Demo count="0" msg="bio" {...this.props} />
       	<Demo count="1" msg="site info" {...this.props} />
       	<Demo count="2" msg="credits" {...this.props} />

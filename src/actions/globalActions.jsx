@@ -13,3 +13,10 @@ export function updateDragging(dragging) {
 		dragging,
 	});
 }
+
+export function updateInBox(current) {
+	dispatcher.dispatch({
+		type: "UPDATE_IN_BOX",
+		current,
+	});
+}

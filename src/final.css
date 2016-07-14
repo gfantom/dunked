@@ -15,7 +15,7 @@ body {
 h1 {
 left: 200px;
   border-radius: 15px;
-  width: 690px;
+  width: 900px;
   border-width: 2px;
   border-color: red;
   border-style: solid;
@@ -24,16 +24,24 @@ left: 200px;
     #606dbc,
     #606dbc 10px,
     #465298 10px,
-    #465298 20px
-  );
+    #465298 20px);
 }
-h1:hover {
+h1.red {
   background: repeating-linear-gradient(
     45deg,
     #ff3333,
     #ff3333 10px,
     #ff8080 10px,
     #ff8080 20px
+  );
+}
+h1.yellow {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffff4d,
+    #ffff4d 10px,
+    #ffff99 10px,
+    #ffff99 20px
   );
 }
 

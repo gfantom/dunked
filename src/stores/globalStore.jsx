@@ -14,12 +14,8 @@ class globalStore extends EventEmitter {
   	this.draggingBubble = current;
   	this.emit("change");
   }
-  inBoxT() {
-  	this.insideBox = true;
-  	this.emit("change");
-  }
-  inBoxF() {
-  	this.insideBox = false;
+  updateInBox(current) {
+  	this.insideBox = current;
   	this.emit("change");
   }
   selectBubble( bubbleNum ) {
@@ -32,12 +28,19 @@ class globalStore extends EventEmitter {
   getDragging() {
   	return this.draggingBubble;
   }
+  getInBox() {
+    return this.insideBox;
+  }
   handleActions(action) {
   	switch(action.type) {
   		case "UPDATE_DRAGGING": {
   			this.updateDragging(action.dragging);
   			break;
   		}
+      case "UPDATE_IN_BOX": {
+        this.updateInBox(action.current);
+        break;
+      }
   	}
   }
 }

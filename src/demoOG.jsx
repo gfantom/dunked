@@ -37,6 +37,7 @@ const Demo = React.createClass({
       isPressed: true,
     });
     globalActions.updateDragging(true);
+    console.log(pageX, pageY);
   },
 
   handleTouchMove(e) {

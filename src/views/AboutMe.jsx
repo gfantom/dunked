@@ -6,8 +6,7 @@ export default class AboutMe extends Component {
 			<div className="demo5-cell-view" style={{style: "absolute",
 					left: "210px", top: "40px",
 					width: "690px",}}>
-				<img src="/src/pics/testimage.png" alt="personal portait placeholder" style={{margin: "10px 10px 10px 10px",}}/>
-				<h2>Jeffrey Ji</h2>
+				<img src="/src/pics/testimage.png" alt="personal portait placeholder" style={{margin: "10px 10px 10px 10px", float: "right"}}/>
 				<p>
 					<h2>Jeffrey Ji</h2>
 					<hr />
