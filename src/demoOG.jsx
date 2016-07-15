@@ -38,6 +38,7 @@ const Demo = React.createClass({
     });
     globalActions.updateDragging(true);
     console.log(pageX, pageY);
+    console.log(pressX, pressY);
   },
 
   handleTouchMove(e) {
@@ -52,6 +53,7 @@ const Demo = React.createClass({
     if (isPressed) {
       this.setState({mouse: [pageX - dx, pageY - dy]});
     }
+    //console.log(pageX, pageY);
   },
 
   handleMouseUp() {

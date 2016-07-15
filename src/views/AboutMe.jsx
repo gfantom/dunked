@@ -6,7 +6,8 @@ export default class AboutMe extends Component {
 			<div className="demo5-cell-view" style={{style: "absolute",
 					left: "210px", top: "40px",
 					width: "690px",}}>
-				<img src="/src/pics/testimage.png" alt="personal portait placeholder" style={{margin: "10px 10px 10px 10px", float: "right"}}/>
+				<img src="/src/pics/testimage.png" alt="personal portait placeholder"
+				style={{margin: "10px 10px 10px 10px", float: "right"}}/>
 				<p>
 					<h2>Jeffrey Ji</h2>
 					<hr />
@@ -17,7 +18,7 @@ export default class AboutMe extends Component {
 					basketball, and baseball before finally focusing on tennis.
 					<br /><br />
 					At 13, Jeffrey started
-					playing video games, achieving semi-pro status in games such as Team Fortress 2 and
+					playing video games, quickly achieving semi-pro status in games such as Team Fortress 2 and
 					Battlefield: Bad Company 2 under the alias "gfantom". His aggressive playstyle, perfect
 					mechanics, unparalleled team leadership and strategic mind quickly earned him a cult
 					following in the gaming community.
