@@ -45,7 +45,7 @@ export default class App extends Component {
     }
     var finalHeader = dragging ? "Drag here" : headline;
     return (
-      <div className="demo5">
+      <div className={this.props.location.pathname == "/404" ? "demo404" : "demo5"}>
       	<HeaderOne>{finalHeader}</HeaderOne>
       	<Demo count="0" msg="bio" {...this.props} />
       	<Demo count="1" msg="site info" {...this.props} />

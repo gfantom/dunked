@@ -25,8 +25,6 @@ export default class HeaderOne extends Component {
   }
   handleMouseOver() {
     globalActions.updateInBox(true);
-    this.setState({temp: true});
-    console.log("TEMP CHANGED TO: ", this.state.temp);
   }
   handleMouseLeave() {
     globalActions.updateInBox(false);

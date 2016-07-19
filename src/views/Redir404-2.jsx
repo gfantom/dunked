@@ -10,6 +10,7 @@ const Demo = React.createClass({
   componentDidMount() {
     window.addEventListener('mousemove', this.handleMouseMove);
     window.addEventListener('touchmove', this.handleTouchMove);
+    document.title="404";
   },
 
   handleMouseMove({pageX: x, pageY: y}) {
@@ -33,20 +34,25 @@ const Demo = React.createClass({
     return endValue;
   },
 
+  handleMouseClick(event) {
+    this.props.history.push('/');
+  },
+
   render() {
     return (
       <StaggeredMotion
-        defaultStyles={range(6).map(() => ({x: 0, y: 0}))}
+        defaultStyles={range(15).map(() => ({x: 0, y: 0}))}
         styles={this.getStyles}>
         {balls =>
-          <div className="demo1">
+          <div className="fourOfour">
             {balls.map(({x, y}, i) =>
               <div
                 key={i}
-                className={"demo1-ball"}
+                onClick={this.handleMouseClick}
+                className={"fourOfour-ball"}
                 style={{
-                  WebkitTransform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
-                  transform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
+                  WebkitTransform: `translate3d(${x - 270}px, ${y - 185}px, 0)`,
+                  transform: `translate3d(${x - 270}px, ${y - 185}px, 0)`,
                   zIndex: balls.length - i,
                 }} />
             )}
