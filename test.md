@@ -41,7 +41,36 @@
 ###General info about each tag
 ####parent file
 **testCases**: wrapper element for the parent file, has no attributes and contains other tags
-**baseURI**: 
+
+**baseURI**: the base uri that is being tested, ex.
+
+`<baseURI>https://api.twitter.com/1.1</baseURI>`
+
+**port**: API port number
+
+`<port>8080</port>`
+
+**tokenRaw**: the payload being sent to the base URI to retreive the API token
+
+`<tokenRaw>{"username": "twitterbot", "password": "twitterbotpass"}</takenRaw>`
+
+**file**: directory (relative to project root) and name of child files
+
+`<file>./scenarios/scenario01.xml</file>`
+
+####scenario (child) files
+**scenario**: wrapper element, contains attribute "ID"
+
+**case**: wrapper element, contains attribute "request" and "ID"
+
+**method**: the API call method
+
+```XML
+<method>POST</method>
+<method>GET</method>
+```
+
+**headers**: wrapper element for request header
 
 ###Supported Tests
 ####verifyStatus
