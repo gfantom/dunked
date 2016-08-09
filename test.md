@@ -97,13 +97,47 @@
 
 **expected**: wrapper element for API call response tests
 
-**depend**: key values from the call response are saved in a hashmap to be used for later cases in the same scenario. Multiple key values are separated by commas. If a response from a call is: 
+**depend**: key values from the call response are saved in a hashmap to be used for later cases in the same scenario. Multiple key values are separated by commas.
+
+NOTE: A value nested further in the response can be stored with the standard periods.
+
+Example: If a response from a call is: 
 
 ```json
 {
   "version": 1,
   "color": "red"
+  "other": {
+    "moreStuff": "infoHere"
+  }
 }
+```
+
+and the next case is a POST with a payload dependent on `color`, `version`, and `other.moreStuff`, then
+
+```XML
+<depend>color,version,other.moreStuff</depend>
+```
+
+should be nested in the `expected` element. In subsequent cases, `{DEPENDS::key}` can be used to insert that value into a payload or dbRow query.
+
+Example:
+
+```XML
+<payload>{
+  "version": {DEPENDS::version},
+  "color": {DEPENDS::color},
+  "other": {
+    {DEPENDS::other.moreStuff}
+  }
+}</payload>
+```
+
+Saved values can also be used in the `<case>` tag's `request` attribute by surrounding the key with brackets.
+
+```XML
+<case request="/statuses/retweets/{id}" ID="c001>
+  <method>GET</method>
 ```
 
 ##Supported Tests
