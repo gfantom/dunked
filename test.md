@@ -54,7 +54,7 @@
 <port>8080</port>
 ```
 
-**tokenRaw**: the payload being sent to the base URI to retreive the API token
+**tokenRaw**: the payload being sent to the base URI to retrieve the API token
 
 ```XML
 <tokenRaw>{"username": "twitterbot", "password": "twitterbotpass"}</takenRaw>
