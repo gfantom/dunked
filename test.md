@@ -1,6 +1,6 @@
 #User's Guide
 
-###general xml file element formatting
+###general xml file element nesting schema
 
 **parent xml file, should be in root**
 
@@ -38,6 +38,11 @@
 - dbRow
   - label: string used as key to reference ResultSet in later tests ex. "userInfo"
 
+###General info about each tag
+####parent file
+**testCases**: wrapper element for the parent file, has no attributes and contains other tags
+**baseURI**: 
+
 ###Supported Tests
 ####verifyStatus
 `<verifyStatus>200</verifyStatus>`
@@ -58,3 +63,4 @@ String within tags should contain the location of the schema that the response w
 
 Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present.
 #####REQUIRED ELEMENTS
+databaseFile: 
