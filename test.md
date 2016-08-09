@@ -28,5 +28,9 @@
       - validateSchema
       - dbKeyValue
 
-####elements that have special attributes
+#####elements that have special attributes
 
+- scenario
+  - ID: scenario id used in log file ex. "s001"
+- case
+  - request: url extension on the uri ex. "/statuses/home_timeline.json"
