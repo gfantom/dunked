@@ -4,5 +4,5 @@
 
 **parent xml file, should be in root**
 
--testCases
-  -baseURI
+- testCases
+  - baseURI
