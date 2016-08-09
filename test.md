@@ -54,3 +54,7 @@ two strings separated by a colon. The first string is the key in the response js
 
 String within tags should contain the location of the schema that the response will be compared against.
 ####dbKeyValue
+`<dbKeyValue> id_str : tweetTable.TWEETID</dbKeyValue>`
+
+Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present.
+#####REQUIRED ELEMENTS
