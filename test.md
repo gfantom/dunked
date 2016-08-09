@@ -84,9 +84,9 @@
 
 ```XML
 <headers>
-  <header>Content-Type : application/v1.0+json<header>
+  <header>Content-Type : application/v1.0+json</header>
   <header>Accept-Language : en-US</header>
-<headers>
+</headers>
 ```
 
 **payload**: optional payload string that will be sent with POST and PUT calls if included in the case.
