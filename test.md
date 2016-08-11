@@ -141,15 +141,28 @@ Saved values can also be used in the `<case>` tag's `request` attribute by surro
   ...
 ```
 
+*dbRow*: rows returned from the database query are stored in a hashmap with the `label` attribute as the key, and the ResultSet as the value.
+
+```XML
+<expected>
+  <dbRow label="table1">SELECT * FROM RETWEETS WHERE USERID=12345678</dbRow>
+  ...
+```
+
+The label can be any string, and will act as an identifier later on. Within the element tags must be a query that returns a row from a table found in the database. If an error occurs, testing will not continue with the cases in the scenario.
+
 The remaining tags all belong within the `<expected>` element tags, and are **optional**. See **Supported Tests** below.
 
 ##Supported Tests
+All tests are **optional**, but belong within the `<expected>` element tags.
+
 *verifyStatus*
 ```XML
 <verifyStatus>200</verifyStatus>
 ```
 
 One integer is allowed within the tags. The integer should be the expected status code of the API call (if you are expecting 404, then put 404. If you're expecting 201, then put 201). Any status code other then the one specified will be marked as an error.
+
 *verifyKeyValue*
 ```XML
 <verifyKeyValue>id_str : 240558470661799936</verifyKeyValue>
@@ -166,11 +179,14 @@ two strings separated by a colon. The first string is the key in the response js
 ```
 
 String within tags should contain the location of the schema that the response will be compared against.
+
 *dbKeyValue*
 ```XML
 <dbKeyValue> id_str : tweetTable.TWEETID</dbKeyValue>
 ```
 
-Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present.
-####REQUIRED ELEMENTS
-databaseFile: 
+Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present:
+- `databaseFile`: must be present in the scenario or parent file
+- `dbRow`: must be present in the current case or previous cases in the same scenario
+
+The string before the colon is the same as in the `<verifyKeyValue>` test: a key present in the request response body. The second string is separated by a period. The first half is the identifier for a ResultSet (table row) which should have been saved with a `<dbRow>` element. The second half should be the column name in that particular row. In the example above, `tweetTable` is the table name, and `TWEETID` is the column in that table.
