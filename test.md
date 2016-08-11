@@ -1,7 +1,10 @@
 #User's Guide
+##Dependencies
+- REST-assured
+- JsonPath
+- JDBC Thin Driver compatible with JDK 7
 
-##general xml file element nesting schema
-
+##General xml file element nesting schema
 **parent xml file, should be in root**
 
 - testCases
@@ -14,6 +17,7 @@
 **child xml files, specify location in parent xml file**
 
 - scenario
+  - databaseFile
   - case
     - method
     - headers
@@ -43,6 +47,31 @@
 ###parent file
 *testCases*: wrapper element for the parent file, has no attributes and contains other tags
 
+*databaseFile*: Can be in either parent or child files. If present in parent file but not in child file, then scenario in child file will inherit parent file's database connection. Should reference the directory and name of a properties file, which contains database connection info.
+
+```XML
+<testCases>
+  <databaseFile>/databases/db1.properties</databaseFile>
+  ...
+```
+
+or if in child file:
+
+```XML
+<scenario ID="s001">
+  <databaseFile>/databases/db2.properties</databaseFile>
+  ...
+```
+
+In the properties file:
+```properties
+#database properties
+JDBC_DRIVER=oracle.jdbc.driver.OracleDriver
+DB_URL=jdbc:oracle:thin:@eps-oracle.databaseurl.com:1521:ORCL
+USER=username
+PASSWORD=password
+```
+
 *baseURI*: the base uri that is being tested, ex.
 
 ```XML
@@ -58,7 +87,7 @@
 *tokenRaw*: the payload being sent to the base URI to retrieve the API token
 
 ```XML
-<tokenRaw>{"username": "twitterbot", "password": "twitterbotpass"}</takenRaw>
+<tokenRaw>{"username": "twitterbot", "password": "twitterbotpass"}</tokenRaw>
 ```
 
 *file*: directory (relative to project root) and name of child files
