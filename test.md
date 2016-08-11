@@ -145,7 +145,7 @@ Saved values can also be used in the `<case>` tag's `request` attribute by surro
 
 ```XML
 <expected>
-  <dbRow label="table1">SELECT * FROM RETWEETS WHERE USERID=12345678</dbRow>
+  <dbRow label="table1">SELECT * FROM USERACCOUNTS WHERE USERID=12345678</dbRow>
   ...
 ```
 
@@ -182,11 +182,11 @@ String within tags should contain the location of the schema that the response w
 
 *dbKeyValue*
 ```XML
-<dbKeyValue> id_str : tweetTable.TWEETID</dbKeyValue>
+<dbKeyValue> id_str : table1.LASTLOGIN</dbKeyValue>
 ```
 
 Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present:
 - `databaseFile`: must be present in the scenario or parent file
 - `dbRow`: must be present in the current case or previous cases in the same scenario
 
-The string before the colon is the same as in the `<verifyKeyValue>` test: a key present in the request response body. The second string is separated by a period. The first half is the identifier for a ResultSet (table row) which should have been saved with a `<dbRow>` element. The second half should be the column name in that particular row. In the example above, `tweetTable` is the table name, and `TWEETID` is the column in that table.
+The string before the colon is the same as in the `<verifyKeyValue>` test: a key present in the request response body. The second string is separated by a period. The first half is the identifier for a ResultSet (table row) which should have been saved with a `<dbRow>` element. The second half should be the column name in that particular row. In the example above, `table1` is the table row name, and `LASTLOGIN` is the column in that table.
