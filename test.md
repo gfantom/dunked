@@ -214,7 +214,7 @@ String within tags should contain the location of the schema that the response w
 <dbKeyValue> id_str : table1.LASTLOGIN</dbKeyValue>
 ```
 
-Similar to verifyKeyValue, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present:
+Similar to `<verifyKeyValue>`, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present:
 - `databaseFile`: must be present in the scenario or parent file
 - `dbRow`: must be present in the current case or previous cases in the same scenario
 
