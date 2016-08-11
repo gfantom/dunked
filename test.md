@@ -39,65 +39,65 @@
   - label: string used as key to reference ResultSet in later tests ex. "userInfo"
 
 ##General info about each tag
+*All tags are required unless otherwise noted*
 ###parent file
-**testCases**: wrapper element for the parent file, has no attributes and contains other tags
+*testCases*: wrapper element for the parent file, has no attributes and contains other tags
 
-**baseURI**: the base uri that is being tested, ex.
+*baseURI*: the base uri that is being tested, ex.
 
 ```XML
 <baseURI>https://api.twitter.com/1.1</baseURI>
 ```
 
-**port**: API port number
+*port*: API port number
 
 ```XML
 <port>8080</port>
 ```
 
-**tokenRaw**: the payload being sent to the base URI to retrieve the API token
+*tokenRaw*: the payload being sent to the base URI to retrieve the API token
 
 ```XML
 <tokenRaw>{"username": "twitterbot", "password": "twitterbotpass"}</takenRaw>
 ```
 
-**file**: directory (relative to project root) and name of child files
+*file*: directory (relative to project root) and name of child files
 
 ```XML
 <file>./scenarios/scenario01.xml</file>
 ```
 
 ###scenario (child) files
-**scenario**: wrapper element, contains attribute "ID"
+*scenario*: wrapper element, contains attribute "ID"
 
-**case**: wrapper element, contains attribute "request" and "ID"
+*case*: wrapper element, contains attribute "request" and "ID"
 
-**method**: the API call method
+*method*: the API call method
 
 ```XML
 <method>POST</method>
 <method>GET</method>
 ```
 
-**header**: wrapper element for request headers
-
-**headers**: header key and value, separated by colon symbol (white space optional, improves legibility)
+*header*: header key and value, separated by colon symbol (white space optional, improves legibility)
+- **optional** if no headers need to be included with the request
 
 ```XML
-<headers>
-  <header>Content-Type : application/v1.0+json</header>
-  <header>Accept-Language : en-US</header>
-</headers>
+<header>Content-Type : application/v1.0+json</header>
+<header>Accept-Language : en-US</header>
 ```
 
-**payload**: optional payload string that will be sent with POST and PUT calls if included in the case.
+*payload*: optional payload string that will be sent with POST and PUT calls if included in the case.
+- **optional** only include if request is POST or GET, and if a payload needs to be sent with the request
 
 ```XML
 <payload>{"version":1, "lastmodified": 12345678}</payload>
 ```
 
-**expected**: wrapper element for API call response tests
+*expected*: wrapper element for API call response tests
 
-**depend**: key values from the call response are saved in a hashmap to be used for later cases in the same scenario. Multiple key values are separated by commas.
+*depend*: key values from the call response are saved in a hashmap to be used for later cases in the same scenario. Multiple key values are separated by commas.
+- **optional** if subsequent cases in the same scenario aren't dependent on any values from the response
 
 NOTE: A value nested further in the response can be stored with the standard periods.
 
@@ -126,9 +126,9 @@ Example:
 ```XML
 <payload>{
   "version": {DEPENDS::version},
-  "color": {DEPENDS::color},
+  "color": "{DEPENDS::color}",
   "other": {
-    {DEPENDS::other.moreStuff}
+    "info": "{DEPENDS::other.moreStuff}"
   }
 }</payload>
 ```
@@ -138,16 +138,19 @@ Saved values can also be used in the `<case>` tag's `request` attribute by surro
 ```XML
 <case request="/statuses/retweets/{id}" ID="c001>
   <method>GET</method>
+  ...
 ```
 
+The remaining tags all belong within the `<expected>` element tags, and are **optional**. See **Supported Tests** below.
+
 ##Supported Tests
-###verifyStatus
+*verifyStatus*
 ```XML
 <verifyStatus>200</verifyStatus>
 ```
 
 One integer is allowed within the tags. The integer should be the expected status code of the API call (if you are expecting 404, then put 404. If you're expecting 201, then put 201). Any status code other then the one specified will be marked as an error.
-###verifyKeyValue
+*verifyKeyValue*
 ```XML
 <verifyKeyValue>id_str : 240558470661799936</verifyKeyValue>
 ```
@@ -157,13 +160,13 @@ two strings separated by a colon. The first string is the key in the response js
 ```XML
 <verifyKeyValue>entities.url : t.co/bfj7zkDJ</verifyKeyValue>
 ```
-###validateSchema
+*validateSchema*
 ```XML
 <validateSchema>/schemas/case1.json</validateSchema>
 ```
 
 String within tags should contain the location of the schema that the response will be compared against.
-###dbKeyValue
+*dbKeyValue*
 ```XML
 <dbKeyValue> id_str : tweetTable.TWEETID</dbKeyValue>
 ```
