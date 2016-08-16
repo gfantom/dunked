@@ -30,7 +30,7 @@
       - verifyKeyValue
       - verifyResponseBody
       - validateSchema
-      - dbKeyValue
+      - responseKeyValue
 
 ####elements that have special attributes
 
@@ -192,9 +192,9 @@ All tests are **optional**, but belong within the `<expected>` element tags.
 
 One integer is allowed within the tags. The integer should be the expected status code of the API call (if you are expecting 404, then put 404. If you're expecting 201, then put 201). Any status code other then the one specified will be marked as an error.
 
-*verifyKeyValue*
+*responseKeyValue*
 ```XML
-<verifyKeyValue>id_str : 240558470661799936</verifyKeyValue>
+<responseKeyValue>id_str : 240558470661799936</responseKeyValue>
 ```
 
 two strings separated by a colon. The first string is the key in the response json and the second string is the expected value. If the key is nested in other keys, then you indicate the nests with periods:
@@ -209,9 +209,9 @@ two strings separated by a colon. The first string is the key in the response js
 
 String within tags should contain the location of the schema that the response will be compared against.
 
-*dbKeyValue*
+*responseDbKeyValue*
 ```XML
-<dbKeyValue> id_str : table1.LASTLOGIN</dbKeyValue>
+<responseDbKeyValue> id_str : table1.LASTLOGIN</responseDbKeyValue>
 ```
 
 Similar to `<verifyKeyValue>`, but the value is not written in the xml file directly, but instead retrieved from the specified database. If this element is present in the scenario, 2 other elements must be present:
