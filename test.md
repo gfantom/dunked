@@ -39,6 +39,8 @@
 - case
   - request: url extension on the uri ex. "/statuses/home_timeline.json"
   - ID: case id used in log file ex. "c001"
+- databaseFile
+  - label: string used as key to reference database connection
 - dbRow
   - label: string used as key to reference ResultSet in later tests ex. "userInfo"
 
@@ -47,11 +49,11 @@
 ###parent file
 *testCases*: wrapper element for the parent file, has no attributes and contains other tags
 
-*databaseFile*: Can be in either parent or child files. If present in parent file but not in child file, then scenario in child file will inherit parent file's database connection. Should reference the directory and name of a properties file, which contains database connection info.
+*databaseFile*: Can be in parent or child file. All databases specified in parent files will be stored in a HashMap with the required `label` attribute as the key. The HashMap will be inherited by child files.
 
 ```XML
 <testCases>
-  <databaseFile>/databases/db1.properties</databaseFile>
+  <databaseFile label="database01">/databases/db1.properties</databaseFile>
   ...
 ```
 
@@ -59,7 +61,7 @@ or if in child file:
 
 ```XML
 <scenario ID="s001">
-  <databaseFile>/databases/db2.properties</databaseFile>
+  <databaseFile label="database02">/databases/db2.properties</databaseFile>
   ...
 ```
 
@@ -121,6 +123,21 @@ PASSWORD=password
 
 ```XML
 <payload>{"version":1, "lastmodified": 12345678}</payload>
+```
+
+*assertRowCountInc*: asserts that the row count in the specified table is incremented after the API request is sent.
+- **optional** if you don't expect a new row to be created, or fully trust your API to create a row correctly
+- format: database label (as specified in `<databaseFile>` element tag prior), 2 colon signs, table
+- NOTE: case-sensitive
+- ELEMENT TAG MUST BE BEFORE `<expected>` ELEMENT TAG, AS ONCE THE PARSER HITS `<expected>`, THE REQUEST WILL BE SENT
+
+```XML
+<scenario ID="s013">
+  <databaseFile label="mainDatabase">/databases/mainDb.properties</databaseFile>
+  ...
+  <assertRowCountInc>mainDatabase::USER_PROFILES</assertRowCountInc>
+  <expected>
+    ...
 ```
 
 *expected*: wrapper element for API call response tests
