@@ -2,7 +2,7 @@
 ##Dependencies
 - REST-assured
 - JsonPath
-- JDBC Thin Driver compatible with JDK 7
+- JDBC Thin Driver compatible with JDK 8
 
 ##General xml file element nesting schema
 **parent xml file, should be in root**
