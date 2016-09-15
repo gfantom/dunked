@@ -26,6 +26,7 @@
     - expected
       - depend
       - dbRow
+      - dbKeyValue
       - verifyStatus
       - verifyKeyValue
       - verifyResponseBody
@@ -129,6 +130,7 @@ PASSWORD=password
 - **optional** if you don't expect a new row to be created, or fully trust your API to create a row correctly
 - format: database label (as specified in `<databaseFile>` element tag prior), 2 colon signs, table
 - NOTE: case-sensitive
+- NOTE: if you don't expect an additional row to be created immediately after the request (i.e. table is incremented after 1.5 min), don't use this test in the case
 - ELEMENT TAG MUST BE BEFORE `<expected>` ELEMENT TAG, AS ONCE THE PARSER HITS `<expected>`, THE REQUEST WILL BE SENT
 
 ```XML
@@ -225,6 +227,24 @@ two strings separated by a colon. The first string is the key in the response js
 ```
 
 String within tags should contain the location of the schema that the response will be compared against.
+
+*dbKeyValue*
+```XML
+<expected>
+  <dbrow label="row1" db="oracle">SELECT ...
+  <dbKeyValue db="oracle" interval="5" limit="60">generaluser||admin : row1.USERTYPE</dbKeyValue>
+```
+
+Similar to `<verifyKeyValue>`, but checks values in a database rather than a the response. first half of string (before colon) are expected values in the table column separated by "||" (2 pipe characters, exclude double pipes if you only expect the value to be one string). The second half is the dbrow label is row label, period character, and the column name.
+
+The following attribute is required:
+- `db`: the database that the table belongs to
+
+Optional attributes:
+- `interval`: value must be an integer, the test will check the column entry every interval number of minutes OR until the entry is equal to the last value.
+- `limit`: value must be integer, dictates the max number of minutes that the test will run. Defaults to 60 min if `interval` attribute is specified, but not `limit` attribute
+
+In the example above, the test will check every 5 min up to 60 min that the entry in `USERTYPE` column is equal to `generaluser`. If the entry is `admin`, then the test will stop running and will be deemed successful. However, if at any time, the entry in the column is neither `generaluser` nor `admin`, then the test will stop immediately, and return unsuccessful.
 
 *responseDbKeyValue*
 ```XML
